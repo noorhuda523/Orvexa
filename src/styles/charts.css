@@ -1,0 +1,210 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   NEXORA — CHART.JS DASHBOARD & ANALYTICS STYLES
+   Strict Light Theme ONLY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.nx-chart-card {
+  background: #FFFFFF;
+  border: 1px solid #E9E8F1;
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(25, 24, 43, 0.02);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nx-chart-card:hover {
+  border-color: #D6D2EB;
+  box-shadow: 0 8px 24px rgba(112, 71, 235, 0.05);
+}
+
+.nx-chart-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.nx-chart-card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.nx-chart-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #19182B;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.nx-chart-card-subtitle {
+  font-size: 0.82rem;
+  color: #74758A;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.nx-chart-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nx-chart-body {
+  position: relative;
+  width: 100%;
+  flex: 1;
+}
+
+/* Custom Interactive Legend Pills */
+.nx-chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nx-chart-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #74758A;
+  cursor: pointer;
+  padding: 3px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.nx-chart-legend-item:hover {
+  background: #F8F9FC;
+  color: #19182B;
+}
+
+.nx-chart-legend-item.inactive {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.nx-chart-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Date Range Button Group */
+.nx-chart-pills {
+  display: inline-flex;
+  align-items: center;
+  background: #F8F9FC;
+  border: 1px solid #E9E8F1;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.nx-chart-pill-btn {
+  background: none;
+  border: none;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #74758A;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nx-chart-pill-btn.active {
+  background: #FFFFFF;
+  color: #7047EB;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(25, 24, 43, 0.08);
+}
+
+/* Shimmer Skeleton */
+.nx-chart-skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #F8F9FC 25%, #F1F0FA 50%, #F8F9FC 75%);
+  background-size: 200% 100%;
+  animation: nx-shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes nx-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Empty State inside Chart Card */
+.nx-chart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 180px;
+  text-align: center;
+  gap: 8px;
+  color: #74758A;
+}
+
+.nx-chart-empty-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F1F0FA;
+  color: #7047EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.nx-chart-empty-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #19182B;
+  margin: 0;
+}
+
+.nx-chart-empty-sub {
+  font-size: 0.78rem;
+  color: #74758A;
+  margin: 0;
+  max-width: 280px;
+}
+
+/* Responsive grid for dashboard charts */
+.nx-dashboard-charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.nx-dashboard-charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .nx-dashboard-charts-grid,
+  .nx-dashboard-charts-row {
+    grid-template-columns: 1fr;
+  }
+}

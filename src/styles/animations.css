@@ -1,0 +1,64 @@
+/* Keyframes, scroll-reveal states (.rv/.on/.done) and reduced-motion overrides. */
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){:root{scroll-behavior:auto}*{transition:none!important;animation:none!important}.rv{opacity:1;transform:none}.step::after{transform:scaleX(1)}}
+.rv{opacity:0;transform:translateY(22px) scale(.98);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1),border-color .25s,background-color .2s}
+.rv.on{opacity:1;transform:none;transition-delay:calc(var(--i,0)*90ms)}
+.rv.done{transition-duration:.25s;transition-delay:0s}
+.card.rv.done:hover{transform:translateY(-4px)}
+.btn.rv.done:active{transform:scale(.98)}
+@keyframes fin{from{opacity:0;transform:translateY(10px)}}
+@media (prefers-reduced-motion:reduce){.pg,.out{animation:none}.px{transform:none}}
+@keyframes slide{from{transform:translateX(24px);opacity:0}}
+@keyframes grow{from{transform:scaleY(.05)}}
+@media (prefers-reduced-motion:reduce){.dash>*,.bar{animation:none}.app{transition:none}}
+@media (prefers-reduced-motion:reduce){.tk{animation:none}}
+
+
+/* Interactive Pulse for Live Pipeline States */
+@keyframes pulseDot {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 10px rgba(22, 184, 144, 0.6); }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+.nx-live-pulse-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #16B890;
+  animation: pulseDot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Subtle Shimmer for Skeletons and Loading */
+@keyframes nxShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.nx-shimmer {
+  background: linear-gradient(90deg, #F1F0FA 25%, #E9E8F1 50%, #F1F0FA 75%);
+  background-size: 200% 100%;
+  animation: nxShimmer 1.8s infinite;
+}
+
+/* Flow line dash motion for workflow connections */
+@keyframes flowDash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.nx-flow-animated-line {
+  stroke-dasharray: 6 4;
+  animation: flowDash 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-live-pulse-dot,
+  .nx-shimmer,
+  .nx-flow-animated-line {
+    animation: none !important;
+  }
+}

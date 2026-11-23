@@ -1,0 +1,14 @@
+/* Aurora glows. <AuroraBackground/> sets data-aurora="on" on <html> for marketing and auth pages. */
+/* ---- Aurora: two soft corner glows (top-left, top-right) + quiet inner glows. Palette: purple, indigo, cyan, navy only.
+   Every gradient fades to fully transparent inside its own box, so no glow ever ends in an edge. ---- */
+/* Aurora overlays deactivated to eliminate neon haze and maintain a crisp, professional SaaS aesthetic */
+:root{--ar-a:color-mix(in oklab,var(--purple) 72%,var(--cyan));--ar-b:color-mix(in oklab,var(--cyan) 80%,var(--purple));--ar-c:color-mix(in oklab,var(--purple) 52%,var(--line));--ark:0}
+:root[data-aurora="on"]::before,
+:root[data-aurora="on"]::after,
+.alt::before,
+#start::before,
+.band::before,
+.card::before {
+  display: none !important;
+  content: none !important;
+}

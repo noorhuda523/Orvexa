@@ -1,0 +1,385 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   NEXORA — ORGANIX TASK MANAGEMENT STYLES (MATCHING REFERENCE IMAGE 2)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.organix-tasks-page {
+  padding: 24px 32px 64px;
+  max-width: 1440px;
+  margin: 0 auto;
+  color: #19182B;
+}
+
+/* ─── Top Header Bar ─────────────────────────────────────────────────────── */
+.organix-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.organix-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #19182B;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.organix-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.organix-btn-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  color: #19182B;
+  border: 1px solid #E9E8F1;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(25, 24, 43, 0.04);
+  transition: all 0.18s ease;
+}
+
+.organix-btn-add:hover {
+  background: #F1F0FA;
+  border-color: #7047EB;
+  color: #7047EB;
+}
+
+/* ─── Sub-Toolbar: View Switcher (Board, Table, Calendar) + Filters ──────── */
+.organix-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F1F0FA;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.organix-view-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.organix-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #74758A;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.organix-tab-btn:hover {
+  color: #19182B;
+  background: #F8F9FC;
+}
+
+.organix-tab-btn.active {
+  background: #FFFFFF;
+  color: #7047EB;
+  border-color: #E9E8F1;
+  box-shadow: 0 2px 6px rgba(112, 71, 235, 0.08);
+}
+
+.organix-toolbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.organix-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  border: 1px solid #E9E8F1;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #74758A;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.organix-tool-btn:hover {
+  background: #F8F9FC;
+  color: #19182B;
+  border-color: #D6D2EB;
+}
+
+/* ─── Kanban Board Grid ──────────────────────────────────────────────────── */
+.organix-board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .organix-board-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.organix-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #F8F9FC;
+  border: 1px solid #F1F0FA;
+  border-radius: 16px;
+  padding: 16px;
+  min-height: 520px;
+}
+
+/* Column Header Pill */
+.organix-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.organix-col-header.todo {
+  background: #F1EDFD;
+  color: #5E36D9;
+}
+
+.organix-col-header.doing {
+  background: #E8F5FD;
+  color: #0284C7;
+}
+
+.organix-col-header.done {
+  background: #EAF8F0;
+  color: #15803D;
+}
+
+.organix-col-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.organix-badge-count {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.organix-col-header.todo .organix-badge-count { color: #5E36D9; }
+.organix-col-header.doing .organix-badge-count { color: #0284C7; }
+.organix-col-header.done .organix-badge-count { color: #15803D; }
+
+.organix-col-add-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.organix-col-add-btn:hover {
+  transform: scale(1.15);
+}
+
+/* ─── Task Card ──────────────────────────────────────────────────────────── */
+.organix-card {
+  background: #FFFFFF;
+  border: 1px solid #E9E8F1;
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 6px rgba(25, 24, 43, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: grab;
+  position: relative;
+}
+
+.organix-card:hover {
+  border-color: #8B75F5;
+  box-shadow: 0 10px 24px rgba(112, 71, 235, 0.08);
+  transform: translateY(-2px);
+}
+
+.organix-card:active {
+  cursor: grabbing;
+}
+
+.organix-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.organix-tag {
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.organix-tag.design { color: #EA580C; }
+.organix-tag.development { color: #2563EB; }
+.organix-tag.modeling { color: #9333EA; }
+.organix-tag.marketing { color: #059669; }
+
+.organix-card-menu {
+  background: none;
+  border: none;
+  color: #74758A;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.organix-card-menu:hover {
+  color: #19182B;
+  background: #F8F9FC;
+}
+
+.organix-card-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #19182B;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.organix-card-desc {
+  font-size: 0.82rem;
+  color: #74758A;
+  margin: 0;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Feature 3D Illustration / Graphic */
+.organix-card-banner {
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #FFF6EE 0%, #FFE9D6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Card Bottom Metadata Row */
+.organix-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: #74758A;
+  flex-wrap: wrap;
+}
+
+.organix-pri-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.organix-pri-pill.high { background: #FDE8EA; color: #EF6474; }
+.organix-pri-pill.med { background: #FEF4E8; color: #F4AD4E; }
+.organix-pri-pill.low { background: #E8F8F4; color: #16B890; }
+
+.organix-due-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #74758A;
+}
+
+.organix-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #F8F9FC;
+}
+
+.organix-avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.organix-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #E9E8F1;
+  border: 2px solid #FFFFFF;
+  margin-left: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #19182B;
+}
+
+.organix-avatar:first-child {
+  margin-left: 0;
+}
+
+.organix-card-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: #74758A;
+}
+
+.organix-stat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
