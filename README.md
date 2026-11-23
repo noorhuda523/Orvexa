@@ -1,5 +1,5 @@
 
-# Nexora
+# Orvexa
 
 A frontend-only SaaS portfolio project: marketing site, auth screens and a full demo app (dashboard, tasks, workflows, team, notifications, help center, profile and eight settings sections).
 Built with **React 18, Vite, React Router 6 and Three.js**. There is **no backend and no database**: everything is demo data and `localStorage`.
