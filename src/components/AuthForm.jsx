@@ -15,14 +15,12 @@ export default function AuthForm({ mode, go, signIn }) {
     name: '',
     email: isSignUp ? '' : 'noorulhuda@orvexa.dev',
     pw: isSignUp ? '' : 'orvexapro2026',
-    pw2: '',
     ok: false,
   });
 
   const [errors, setErrors] = useState({});
   const [busy, setBusy] = useState(false);
   const [showPw, setShowPw] = useState(false);
-  const [showPw2, setShowPw2] = useState(false);
   const [showForgot, setShowForgot] = useState(false);
   const [forgotEmail, setForgotEmail] = useState('');
 
@@ -48,9 +46,6 @@ export default function AuthForm({ mode, go, signIn }) {
     }
     if (formValues.pw.length < 8) {
       newErrors.pw = 'Password must be at least 8 characters.';
-    }
-    if (isSignUp && formValues.pw2 !== formValues.pw) {
-      newErrors.pw2 = 'Passwords do not match.';
     }
     if (isSignUp && !formValues.ok) {
       newErrors.ok = 'Please accept the Terms of Service to continue.';
@@ -92,12 +87,7 @@ export default function AuthForm({ mode, go, signIn }) {
   };
 
   return (
-    <motion.div
-      className="nx-auth-form-card"
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-    >
+    <div className="nx-auth-form-card">
       {/* Card Header */}
       <div className="nx-auth-card-head">
         <h1>{isSignUp ? 'Create your workspace' : 'Welcome back to Orvexa'}</h1>
@@ -417,7 +407,7 @@ export default function AuthForm({ mode, go, signIn }) {
           </div>
         </Modal>
       )}
-    </motion.div>
+    </div>
   );
 }
 

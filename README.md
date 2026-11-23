@@ -1,3 +1,4 @@
+
 # Nexora
 
 A frontend-only SaaS portfolio project: marketing site, auth screens and a full demo app (dashboard, tasks, workflows, team, notifications, help center, profile and eight settings sections).
@@ -86,3 +87,7 @@ Components that came from the original single-file build use `React.createElemen
 
 Checked in a sandbox without network access: the project was bundled with esbuild and exercised in headless Chromium (179 checks) in both development (StrictMode, React warnings) and production mode. The checks cover every route and deep link, the route guard, 404s, theme and system theme, scroll-reveal replay, sign-up to dashboard, tasks, workflows, team invites and seat limits, notifications, help requests, profile photo / bio / links / skills, all eight settings sections (including file downloads and clipboard copy), account deletion, browser back/forward, the mobile menu, **layout at 390px and 360px phone widths**, reduced motion, and no console errors. Screenshots of the new screens were also reviewed by eye.
 **Not run there:** `npm install`, `vite build`, and real `react-router-dom` / `three` (they could not be downloaded; the test used minimal stand-ins, and the sphere was checked only through its CSS fallback). Run `npm install && npm run build` once on your machine and open the sphere in a real browser.
+=======
+# Orvexa
+ORVEXA is a modern AI-powered SaaS workspace prototype featuring AI Agents, workflow automation, smart task management, interactive analytics, and productivity tools — all wrapped in a sleek, responsive interface.
+

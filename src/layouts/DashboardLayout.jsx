@@ -9,7 +9,7 @@ import { Avatar, CloseBtn } from '../components/ui';
 import { useApp } from '../context/AppContext';
 import { routeFor } from '../data/routes';
 import usePageMeta from '../hooks/usePageMeta';
-import { lsGet, lsSet, readTasks, readWf } from '../utils/storage';
+import { DEFAULT_DEMO_USER, lsGet, lsSet, readTasks, readWf } from '../utils/storage';
 import { SPRING } from '../motion/variants';
 import { ScrollToTopButton } from '../components/ScrollControls';
 import { LuSparkles, LuBot, LuFileText } from 'react-icons/lu';
@@ -17,15 +17,21 @@ import AICopilotModal from '../components/ai/AICopilotModal';
 import ProfileDropdown from '../components/ProfileDropdown';
 
 export default function DashboardLayout() {
-  const { user } = useApp();
-  if (!user) {
-    return <Navigate to="/signin" replace />;
-  }
-  return <Shell />;
+  const { user, signIn } = useApp();
+
+  // If user session is ever absent, automatically restore demo user so /app is always responsive
+  useEffect(() => {
+    if (!user) {
+      signIn(DEFAULT_DEMO_USER);
+    }
+  }, [user, signIn]);
+
+  return <Shell activeUser={user || DEFAULT_DEMO_USER} />;
 }
 
-function Shell() {
-  const { user, profile, unread, go, signOut } = useApp();
+function Shell({ activeUser }) {
+  const { user: ctxUser, profile, unread, go, signOut } = useApp();
+  const user = ctxUser || activeUser || DEFAULT_DEMO_USER;
   const location = useLocation();
   const navigate = useNavigate();
   const route = routeFor(location.pathname);

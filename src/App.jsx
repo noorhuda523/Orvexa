@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { initGlobalTilt } from './utils/tilt';
 import MarketingLayout from './layouts/MarketingLayout';
 import AuthLayout from './layouts/AuthLayout';
 import DashboardLayout from './layouts/DashboardLayout';
@@ -29,6 +31,13 @@ import Settings from './pages/Settings';
 import NotFound from './pages/NotFound';
 
 export default function App() {
+  useEffect(() => {
+    const destroyTilt = initGlobalTilt({ max: 6, perspective: 1000, scale: 1.012, translateY: -4 });
+    return () => {
+      if (typeof destroyTilt === 'function') destroyTilt();
+    };
+  }, []);
+
   return (
     <Routes>
       <Route element={<MarketingLayout />}>

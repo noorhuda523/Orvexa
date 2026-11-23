@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import SkipLink from '../components/SkipLink';
@@ -18,35 +18,53 @@ import {
 } from 'react-icons/lu';
 
 export default function AuthLayout() {
-  const { user, go, signOut } = useApp();
+  const { user, go } = useApp();
   const location = useLocation();
   const mainRef = usePageMeta();
 
   // Mode: Sign In (false) vs Sign Up (true)
   const isSignUp = location.pathname.startsWith('/signup');
 
-  // Coordinated panel slide transition
-  const panelTransition = {
-    type: 'spring',
-    damping: 28,
-    stiffness: 220,
-    mass: 0.9,
+  // Track desktop viewport for side-by-side sliding transition
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 1024;
+    }
+    return true;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Butter-smooth hardware-accelerated slide transition
+  const slideTransition = {
+    duration: 0.55,
+    ease: [0.16, 1, 0.3, 1], // easeOutExpo
   };
 
   return (
     <>
       <SkipLink />
       <div className="nx-auth-page-root">
-        {/* ── Form Panel (Left in Sign In, Slides to Right in Sign Up) ── */}
+        {/* ── Form Panel (Left on Sign In, Glides to Right on Sign Up) ── */}
         <motion.div
-          layout
-          transition={panelTransition}
           className="nx-auth-form-side"
+          initial={false}
+          animate={{
+            x: isDesktop ? (isSignUp ? '100%' : '0%') : '0%',
+          }}
+          transition={slideTransition}
           style={{
-            order: isSignUp ? 2 : 1,
-            flex: '1 1 50%',
-            width: '50%',
+            flex: isDesktop ? '0 0 50%' : '1 1 100%',
+            width: isDesktop ? '50%' : '100%',
             minWidth: 0,
+            zIndex: 2,
+            position: 'relative',
           }}
         >
           {/* Top Brand & Navigation */}
@@ -59,48 +77,18 @@ export default function AuthLayout() {
 
           <main ref={mainRef} tabIndex={-1} className="nx-auth-card-wrapper">
             <div className="nx-auth-card">
-              <motion.div
-                key={location.pathname}
-                initial={{ opacity: 0, x: isSignUp ? 24 : -24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                style={{ width: '100%' }}
-              >
-                {user && (
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      padding: '8px 12px',
-                      marginBottom: 16,
-                      borderRadius: 8,
-                      background: '#EDE7FF',
-                      border: '1px solid #D6D2EB',
-                      fontSize: '0.8rem',
-                      color: '#7047EB',
-                    }}
-                  >
-                    <span>Active: <strong>{user.name}</strong></span>
-                    <button
-                      type="button"
-                      onClick={() => go('app-dashboard')}
-                      style={{
-                        background: 'none',
-                        border: 'none',
-                        color: '#7047EB',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        fontSize: '0.8rem',
-                        textDecoration: 'underline',
-                      }}
-                    >
-                      Open Dashboard →
-                    </button>
-                  </div>
-                )}
-                <Outlet />
-              </motion.div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isSignUp ? 'signup-form' : 'signin-form'}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ width: '100%' }}
+                >
+                  <Outlet />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </main>
 
@@ -117,17 +105,21 @@ export default function AuthLayout() {
           </footer>
         </motion.div>
 
-        {/* ── Animated Visual Branding Panel (Right in Sign In, Slides to Left in Sign Up) ── */}
+        {/* ── Visual Branding Panel (Right on Sign In, Glides to Left on Sign Up) ── */}
         <motion.div
-          layout
-          transition={panelTransition}
           className="nx-auth-showcase-side"
+          initial={false}
+          animate={{
+            x: isDesktop ? (isSignUp ? '-100%' : '0%') : '0%',
+          }}
+          transition={slideTransition}
           style={{
-            order: isSignUp ? 1 : 2,
-            flex: '1 1 50%',
-            width: '50%',
+            flex: isDesktop ? '0 0 50%' : '1 1 100%',
+            width: isDesktop ? '50%' : '100%',
             minWidth: 0,
             overflow: 'hidden',
+            zIndex: 1,
+            position: 'relative',
           }}
           aria-hidden="true"
         >

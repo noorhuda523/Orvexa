@@ -22,17 +22,13 @@ const readUser = () => {
         if (!u.email || u.email === 'demo@nexora.dev' || u.email === 'noorulhuda@nexora.dev') u.email = 'noorulhuda@orvexa.dev';
         try { localStorage.setItem(SK, JSON.stringify(u)); } catch (e) {}
       }
-      return u || null;
+      return u || DEFAULT_DEMO_USER;
     }
-    // If user has explicitly logged out, do not restore demo session
-    if (localStorage.getItem('nx-logged-out') === 'true') {
-      return null;
-    }
-    // Initial visit (first time ever loading demo): initialize DEFAULT_DEMO_USER
+    // Initial visit or fresh session: initialize DEFAULT_DEMO_USER so workspace is immediately accessible
     lsSet(SK, JSON.stringify(DEFAULT_DEMO_USER));
     return DEFAULT_DEMO_USER;
   } catch (e) {
-    return null;
+    return DEFAULT_DEMO_USER;
   }
 };
 

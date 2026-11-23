@@ -13287,6 +13287,7 @@ a.lk:hover svg {
   z-index: 2;
   box-shadow: 12px 0 48px rgba(23, 23, 41, 0.03);
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 @media (max-width: 640px) {
@@ -13771,6 +13772,8 @@ a.lk:hover svg {
   padding: 60px 48px;
   overflow: hidden;
   color: #FFFFFF;
+  box-sizing: border-box;
+  min-height: 100vh;
 }
 
 .nx-auth-showcase-ambient {
